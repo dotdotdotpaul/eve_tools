@@ -18,6 +18,7 @@ module EveTools
 
   protected
     def process_response(endpoint, arg_hash)
+      uri = URI.parse("#{@url}/#{endpoint}.xml.aspx")
       response = Net::HTTP.post_form(uri, arg_hash)
     end
   end

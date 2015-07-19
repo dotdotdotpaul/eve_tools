@@ -1,8 +1,10 @@
-require "eve_tools/railtie" if defined?(Rails)
 require "eve_tools/crest"
-require "eve_tools/igb"
 require "eve_tools/version"
 require "eve_tools/xml"
+if defined?(Rails)
+  require "eve_tools/railtie"
+  require "eve_tools/igb"
+end
 
 module EveTools
 
@@ -18,7 +20,7 @@ module EveTools
   def self.verification_code=(arg)
     @eve_verification_code = arg
   end
-  def user_agent
+  def self.user_agent
     "EveTools Ruby Gem (http://github.com/dotdotdotpaul/eve_tools)"
   end
 
