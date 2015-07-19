@@ -2,14 +2,24 @@ require "eve_tools/railtie" if defined?(Rails)
 require "eve_tools/crest"
 require "eve_tools/igb"
 require "eve_tools/version"
+require "eve_tools/xml"
 
 module EveTools
 
   def self.key_id
-    Rails.application.secrets.eve_key_id
+    @eve_key_id ||= Rails.application.secrets.eve_key_id
+  end
+  def self.key_id=(arg)
+    @eve_key_id = arg
   end
   def self.verification_code
-    Rails.application.secrets.eve_verification
+    @eve_verification_code ||= Rails.application.secrets.eve_verification
+  end
+  def self.verification_code=(arg)
+    @eve_verification_code = arg
+  end
+  def user_agent
+    "EveTools Ruby Gem (http://github.com/dotdotdotpaul/eve_tools)"
   end
 
   TYPE_ID_HASH = {

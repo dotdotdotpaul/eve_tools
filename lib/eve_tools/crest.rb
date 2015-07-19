@@ -1,9 +1,9 @@
 module EveTools
-  class CREST
-    def initialize(key_id, verification_code)
-      @key_id = key_id
-      @verification_code = verification_code
-    end
+  module CREST
+    PUBLIC_URL = "https://public-crest.eveonline.com/"
+    AUTH_URL = "https://crest-tq.eveonline.com/"
+
+    # TODO:  Make a real boy.
   end
 end
 
