@@ -20,8 +20,6 @@
 
 module EveTools
   class IGB
-    include ::ActionView::Helpers::JavaScriptHelper
-    include Rails.application.routes.url_helpers
     
     # Store whether or not we detected the EVE IGB client...
     def initialize(request)
@@ -44,8 +42,8 @@ module EveTools
   
     # Note:  Kept lowerCamelCase to match CCPEVE's documentation...
     def requestTrust(url=nil)
-      #url ||= root_url
-      #if_active("requestTrust", url)
+      url ||= "#{request.protocol}#{request.env["HTTP_HOST"]}"
+      if_active("requestTrust", url)
     end
   
     # Use method_missing as a cheapout way of supporting ALL CCPEVE calls.
@@ -85,6 +83,7 @@ module EveTools
               ]
 
   private
+    include ::ActionView::Helpers::JavaScriptHelper
     def if_active(func, *args)
       return unless @active
       "CCPEVE.#{func.to_s}(#{args.map{|x| x.is_a?(String) ? "'#{escape_javascript(x)}'" : x }.join(", ")})"
