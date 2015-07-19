@@ -42,7 +42,7 @@ module EveTools
   
     # Note:  Kept lowerCamelCase to match CCPEVE's documentation...
     def requestTrust(url=nil)
-      url ||= "#{request.protocol}#{request.env["HTTP_HOST"]}"
+      url ||= "#{@request.protocol}#{@request.env["HTTP_HOST"]}"
       if_active("requestTrust", url)
     end
   
